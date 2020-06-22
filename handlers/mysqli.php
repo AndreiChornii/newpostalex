@@ -6,33 +6,9 @@
  * and open the template in the editor.
  */
 
-function getUsers(){
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
-    if (!$DB) {
-        echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
-//    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-//    echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-        exit;
-    }
-//
-//echo "Соединение с MySQL установлено!" . PHP_EOL;
-//echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
-
-    $data = $DB->query('select id, username, email, phone
-                          from users');
-
-    $users = $data->fetch_all(MYSQLI_ASSOC);
-//    var_dump($users->fetch_all(MYSQLI_ASSOC));
-
-    mysqli_close($DB);
-    
-    return $users;
-}
-
 function getUser($email){
 //    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
+    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "newpostalex");
 
     if (!$DB) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
@@ -44,7 +20,7 @@ function getUser($email){
 //echo "Соединение с MySQL установлено!" . PHP_EOL;
 //echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
 
-    $dataUser = $DB->query("select id, username, password, email, phone
+    $dataUser = $DB->query("select id, login, email
                               from users 
                              where email = '{$email}'");
 
@@ -58,8 +34,10 @@ function getUser($email){
 
 function addUser($data){
 //    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
+    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "newpostalex");
 
+//    var_dump($data);
+    
     if (!$DB) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
 //    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
@@ -67,8 +45,8 @@ function addUser($data){
         exit;
     }
     
-    $sql = "insert into users(username, email, `password`, phone, age)
-                       VALUES ('{$data['name']}', '{$data['email']}', '{$data['password']}', '{$data['phone']}', {$data['age']});";
+    $sql = "insert into users(login, email)
+                       VALUES ('{$data['name']}', '{$data['email']}');";
 //
 //echo "Соединение с MySQL установлено!" . PHP_EOL;
 //echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;

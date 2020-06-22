@@ -30,6 +30,11 @@ if ($method === 'GET') {
         $error = '';
         include './views/ttn.php';
     }
+    
+    if ($route === '/logout') {
+        $_SESSION['user'] = null;
+        header("Location: /");
+    }
 
     include '../views/footer.php';
 }

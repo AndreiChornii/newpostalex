@@ -7,13 +7,8 @@ var formManager = {
     nameError: document.querySelector("#username + .auth__error"),
     email: document.querySelector("#useremail"),
     emailError: document.querySelector("#useremail + .auth__error"),
-    phone: document.querySelector("#userphone"),
-    phoneError: document.querySelector("#userphone + .auth__error"),
-    password: document.querySelector("#userpass"),
-    passwordError: document.querySelector("#userpass + .auth__error"),
-    subscribe: document.querySelector("#usersubscribe"),
     sendBtn: document.querySelector("#sendbtn")
-}
+};
 
 formManager.valid = function valid(){
 
@@ -31,20 +26,8 @@ formManager.valid = function valid(){
         isError = true;
     }
 
-    if (!(/^(\+380|380|80}0){1,4}[0-9]{9}$/i.test(this.phone.value))) {
-        this.phoneError.classList.remove('auth__error_hide');
-        this.phoneError.classList.add('auth__error_show');
-        isError = true;
-    }
-
-    if (!(/^[а-яa-z0-9\-_\.]{5,25}$/i.test(this.password.value))) {
-        this.passwordError.classList.remove('auth__error_hide');
-        this.passwordError.classList.add('auth__error_show');
-        isError = true;
-    }
-
     return !isError;
-}
+};
 
 formManager.send = function send() {
 
@@ -52,11 +35,8 @@ formManager.send = function send() {
 
     var data = {
         name: this.name.value,
-        email: this.email.value,
-        phone: this.phone.value,
-        password: this.password.value,
-        subscribe: this.subscribe.checked
-    }
+        email: this.email.value
+    };
 
     fetch('/registration', {
         method: 'POST',
