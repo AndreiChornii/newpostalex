@@ -15,6 +15,12 @@ if ($method === 'GET') {
        $_SESSION['routes'] = [];
     } 
     
+    if ($route === '/get_documents') {
+        $id_user = $_SESSION['user']['id'];
+        echo json_encode(getDocuments($id_user, $DB));
+        die;
+    }
+    
     include '../views/header.html.php';
  
     if ($route === '/registration') {

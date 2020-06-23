@@ -12,7 +12,10 @@
         </div>
         <div id="rezult"></div>
     </div>
-    <div id="right"></div>
+    <div id="right">
+        <h4>History</h3>
+        <ul></ul>
+    </div>
 </div>
 <script src="documents.js"></script>
 <script src="get_documents.js"></script>
