@@ -26,9 +26,9 @@ if ($method === 'GET') {
         include '../views/login.php';
     }
     
-    if ($route === '/ttn') {
+    if ($route === '/documents') {
         $error = '';
-        include './views/ttn.php';
+        include '../views/documents.html.php';
     }
     
     if ($route === '/logout') {

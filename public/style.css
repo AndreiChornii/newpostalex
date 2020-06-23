@@ -72,16 +72,17 @@ li{
 
 .auth__btn{
     margin: 0 auto;
-    padding: 5px 40px;
-    background: green;
-    color: white;
+    padding: 5px 20px;
+    background: #c7c724;
+    color: black;
     border: none;
     font-size:18px;
-    text-transform: uppercase;
+    border-radius: 4px;
+    /*text-transform: uppercase;*/
 }
 
 .auth__btn:hover{
-    background: #075607;
+    background: #96961a;
 }
 
 .auth__error{
@@ -111,7 +112,67 @@ h3{
     visibility: hidden
 }
 
-
 .active{
     background-color: #ccccb3;
+}
+
+#wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+#left, #right{
+/*    border: 1px solid black;*/
+    min-height: 300px;
+    
+}
+
+#left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#right{
+    box-shadow: 0 0 2px 3px #0000004f;
+    width: 40%;
+}
+
+#status, #rezult{
+    border: 1px solid black;
+}
+
+#status{
+    min-height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#rezult{
+    min-height: 150px;
+    box-shadow: 0 0 2px 3px #0000004f;
+}
+
+form.auth{
+    margin-top: 0;
+}
+
+#sendbtn{
+    margin-left: 10px;
+}
+
+@media(max-width: 500px){
+    #wrapper{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    #left, #right{
+        width: 100%;
+    }
 }

@@ -13,10 +13,12 @@
     <header class="header">
         <nav>
             <ul class="header__menu">
-                <li><a class="header__link<?php if( ($route === '/') and (empty($currentUser['login']))) {echo ' active';} ?>" href="/">Login</a></li>
+                <?php if(empty($currentUser['login'])){ ?>
+                <li><a class="header__link<?php if($route === '/') {echo ' active';} ?>" href="/">Login</a></li>
+                <?php } ?>
                 <li><a class="header__link<?php if($route === '/registration') {echo ' active';} ?>" href="/registration">Registration</a></li>
                 <?php if(!empty($currentUser['login'])){ ?>
-                <li><a class="header__link<?php if($route === '/ttn') {echo ' active';} ?>" href="/ttn">ТТН</a></li>
+                <li><a class="header__link<?php if($route === '/documents') {echo ' active';} ?>" href="/documents">Documents</a></li>
                 <?php } ?>
                 <?php if(!empty($currentUser['login'])){ ?>
                 <li><a class="header__link<?php if($route === '/logout') {echo ' active';} ?>" href="/logout">Logout</a></li>

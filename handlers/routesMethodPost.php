@@ -26,7 +26,7 @@ if ($method === 'POST') {
                 'message' => 'name or email already exists'
             ];
             
-            $isSave = addUser($request);
+            $isSave = addUser($request, $DB);
 //            var_dump($isSave);
             
             if($isSave) {
@@ -94,7 +94,7 @@ if ($method === 'POST') {
         
         $_SESSION['user'] = $User[0];
 
-        header("Location: /ttn");
+        header("Location: /documents");
         
     }
 }

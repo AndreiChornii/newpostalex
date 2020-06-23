@@ -32,9 +32,7 @@ function getUser($email){
     return $user;
 }
 
-function addUser($data){
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "newpostalex");
+function addUser($data, $DB){
 
 //    var_dump($data);
     
