@@ -14,3 +14,4 @@
     </div>
     <div id="right"></div>
 </div>
+<script src="documents.js"></script>

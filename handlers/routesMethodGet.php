@@ -15,15 +15,15 @@ if ($method === 'GET') {
        $_SESSION['routes'] = [];
     } 
     
-    include '../views/header.php';
+    include '../views/header.html.php';
  
     if ($route === '/registration') {
-        include '../views/registration.php';
+        include '../views/registration.html.php';
     }
     
     if ($route === '/') {
         $error = '';
-        include '../views/login.php';
+        include '../views/login.html.php';
     }
     
     if ($route === '/documents') {
@@ -36,5 +36,5 @@ if ($method === 'GET') {
         header("Location: /");
     }
 
-    include '../views/footer.php';
+    include '../views/footer.html.php';
 }

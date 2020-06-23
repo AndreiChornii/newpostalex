@@ -178,40 +178,12 @@ function getTtns($data){
     }
 }
 
-function saveTtn($data){
+function saveTtn($data, $DB){
 //    var_dump($data);
-    
-    $mysql_ScheduledDeliveryDate = substr($data['ScheduledDeliveryDate'], 6, 4) . '-' . substr($data['ScheduledDeliveryDate'], 3, 2) . '-' . substr($data['ScheduledDeliveryDate'], 0, 2);
-    $data['ScheduledDeliveryDate'] = $mysql_ScheduledDeliveryDate;     
 //    echo $data['ScheduledDeliveryDate'];
 //    var_dump($data);
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
-    $sql_max = "SELECT max(id) as max_id FROM ttns";
-    $query_max = mysqli_query($DB, $sql_max);
-    while ($row = mysqli_fetch_array($query_max)) {
-// Записать значение столбца amount_of_num  (который является теперь массивом $row)
-        $max_num = $row['max_id'];
-    }
-
-    if ($query_max) {
-        $result = "update ok";
-        // echo json_encode($result);
-    } else {
-        $result = "update wrong";
-// printf("Error message: %s\n", mysqli_error($conn2));
-        //          print_r("<BR />");
-        //          printf("Error code: %s\n", mysqli_errno($conn2));
-        //          print_r("<BR />");
-        //          printf("Error SQLSTATE: %s.\n", mysqli_sqlstate($conn2));
-        //          print_r("<BR />");
-        //          print_r("--------------");
-//    echo json_encode($result);
-    }
-// Закрыть соединение с БД
-    mysqli_close($DB);
-
+    
 // Соединиться с сервером БД
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
     mysqli_set_charset($DB, "utf8");
     if (!$DB) {
         $result = "Connection failed";
@@ -219,19 +191,14 @@ function saveTtn($data){
     } else {
 
         //$num = $_POST['num'];
-        $id = $max_num + 1;
         $ttn = $data['ttn'];
-        $Status = $data['Status'];
-        $StatusCode = $data['StatusCode'];
-        $ScheduledDeliveryDate = $data['ScheduledDeliveryDate'];
-        $id_user = $data['id'];
-        $DateTimeUpdate = date('Y-m-d H:i:s');
+        $id_user = $data['id_user'];
         // SQL-запрос
 // $sql1 = "INSERT INTO `reestr`(num, descr, trespassing, date, who, source, risk_destroy, process_name, department, comment)
 //  VALUES (82, 'Отримання клієнтами підроблених документів щодо заборгованості перед банком, які направляються банком', 'Отримання клієнтами підроблених документів щодо заборгованості перед банком. Крім того, вимога з ознаками залякування', '2018-02-13', 'Сігал Н.В.', 'Інформація з відділення банку', 'Проводяться заходи щодо попередження зазначеного комплаєнс-ризику','Моніторинг по роботі з кредитними картками','Департамент з моніторингу по роботі з кредитними картками - (Польща В.В.)','Здійснюються язаходи щодо попередження зазначеного комплаєнс-ризику')";
 
-        $sql1 = "INSERT INTO ttns(id, id_user, ScheduledDeliveryDate, Status, StatusCode, ttn, DateTimeUpdate)
-                 VALUES ($id, $id_user, '$ScheduledDeliveryDate', '$Status', $StatusCode, $ttn, '$DateTimeUpdate');
+        $sql1 = "INSERT INTO documents(ttn, id_user)
+                 VALUES ($ttn, $id_user);
                 ";
 
 // Выполнить запрос (набор данных $rs содержит результат)
@@ -244,20 +211,20 @@ function saveTtn($data){
 
         if ($rs) {
             $result = "Wrote ok";
-//            echo json_encode($result);
+            echo json_encode($result);
         } else {
             $result = "Wrote wrong";
             $error_message = mysqli_error($DB);
             $error_code = mysqli_errno($DB);
             $error_sqlstate = mysqli_sqlstate($DB);
-//            echo("<BR />");
-//            echo $error_message;
-//            echo("<BR />");
-//            echo $error_code;
-//            echo("<BR />");
-//            echo $error_sqlstate;
-//            echo("<BR />");
-//            echo json_encode($result);
+            echo("<BR />");
+            echo $error_message;
+            echo("<BR />");
+            echo $error_code;
+            echo("<BR />");
+            echo $error_sqlstate;
+            echo("<BR />");
+            echo json_encode($result);
         }
         mysqli_close($DB);
     }

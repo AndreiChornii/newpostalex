@@ -46,27 +46,31 @@ if ($method === 'POST') {
         }
     }
     
-    if ($route === '/ttn') {
+    if ($route === '/documents') {
         $request = json_decode(file_get_contents('php://input'), true);
 
         $isValid = validTtn($request);
         
-        if ($isValid) {
+//        var_dump($isValid['rezult']);
+        if ($isValid['rezult']) {
             
-            $request['id'] = $_SESSION['user']['id'];
+//            var_dump($_SESSION);
             
-            $isGot = getStatus($request);
+            $request['id_user'] = $_SESSION['user']['id'];
+//            var_dump($request);
             
-            saveTtn($isGot);
+//            $isGot = getStatus($request);
             
-            $isGot['ttns'] = getTtns($isGot);
+            saveTtn($request, $DB);
+            
+//            $isGot['ttns'] = getTtns($isGot);
 //            
-            echo json_encode($isGot);
+//            echo json_encode($isGot);
             
         } else {
             $response = [
                 'result' => false,
-                'message' => $isValid
+                'message' => $isValid['errors']
             ];
 
             echo json_encode($response);
@@ -85,9 +89,9 @@ if ($method === 'POST') {
          *          */
         if(empty($User) || empty($User[0]) || ($name != $User[0]['login']) || ($email != $User[0]['email'])) {
             $error = 'user not found, enter correct username and email';
-            include '../views/header.php';
-            include '../views/login.php';
-            include '../views/footer.php';
+            include '../views/header.html.php';
+            include '../views/login.html.php';
+            include '../views/footer.html.php';
             $_SESSION['user'] = NULL;
             die;
         }
