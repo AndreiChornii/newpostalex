@@ -124,7 +124,7 @@ function saveTtn($data, $DB) {
 
         if ($rs) {
             $result = "Wrote ok";
-            echo json_encode($result);
+//            echo json_encode($result);
         } else {
             $result = "Wrote wrong";
             $error_message = mysqli_error($DB);
@@ -139,7 +139,7 @@ function saveTtn($data, $DB) {
             echo("<BR />");
             echo json_encode($result);
         }
-        mysqli_close($DB);
+//        mysqli_close($DB);
     }
 }
 
@@ -149,14 +149,13 @@ function getDocuments($id_user, $DB) {
 //    $id_user = $_SESSION['user']['id'];
 
     if (!$DB) {
-//        echo "\nConnection failed<br>\n";
+        echo "\nConnection failed<br>\n";
     } else {
 // SQL-запрос
         $sql1 = "select ttn 
                     from documents 
                    WHERE id_user = '$id_user'
                 order by ttn";
-
 
 // Выполнить запрос (набор данных $rs содержит результат)
         $rs = mysqli_query($DB, $sql1);

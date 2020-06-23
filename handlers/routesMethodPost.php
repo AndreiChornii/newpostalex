@@ -62,7 +62,7 @@ if ($method === 'POST') {
 //            $isGot = getStatus($request);
             
             saveTtn($request, $DB);
-            
+            echo json_encode(getDocuments($request['id_user'], $DB));
 //            $isGot['ttns'] = getTtns($isGot);
 //            
 //            echo json_encode($isGot);

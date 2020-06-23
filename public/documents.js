@@ -18,7 +18,7 @@ var formManager = {
     sendBtn: button_ttn
 };
 
-formManager.valid = function valid(){
+formManager.valid = function valid() {
 
     var isError = false;
 
@@ -32,11 +32,12 @@ formManager.valid = function valid(){
 };
 
 formManager.send = function send() {
-    
+
     if (!this.valid()) {
         console.log('invalid ttn number');
         return null;
-    };
+    }
+    ;
 
     var data = {
         ttn: this.ttn.value
@@ -48,10 +49,21 @@ formManager.send = function send() {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(data)
-    }).then(function(response){
+    }).then(function (response) {
         return response.json();
-    }).then(function(data){
-        
+    }).then(function (documents) {
+        let containerLi = document.querySelector('#right ul');
+        while (containerLi.firstChild) {
+            containerLi.removeChild(containerLi.firstChild);
+        }
+        console.log(documents);
+        for (var prop in documents) {
+            let li = document.createElement('li');
+//            console.log(li);
+            li.innerHTML = documents[prop].ttn;
+//            console.log(documents[prop]);
+            containerLi.appendChild(li);
+        }
     });
 //    let Status = document.querySelector('#Status');
 //    let StatusCode = document.querySelector('#StatusCode'); 
@@ -61,18 +73,18 @@ formManager.send = function send() {
 //    data.ScheduledDeliveryDate = ScheduledDeliveryDate.innerText;
 };
 
-formManager.setClearHandler = function setClearHandler(){
+formManager.setClearHandler = function setClearHandler() {
     var elements = document.querySelectorAll('.auth__text');
 
-    elements.forEach(function(element) {
-        element.onclick = function(){
+    elements.forEach(function (element) {
+        element.onclick = function () {
             this.nextElementSibling.classList.remove('auth__error_show');
             this.nextElementSibling.classList.add('auth__error_hide');
         }
     });
 }
 
-formManager.init = function(){
+formManager.init = function () {
     this.sendBtn.onclick = this.send.bind(this);// bind чтоб в this всегда было formManager
     this.setClearHandler();
 }
