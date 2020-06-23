@@ -1,12 +1,12 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-function getUser($email){
+function getUser($email) {
 //    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
     $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "newpostalex");
 
@@ -28,21 +28,21 @@ function getUser($email){
 //    var_dump($users->fetch_all(MYSQLI_ASSOC));
 
     mysqli_close($DB);
-    
+
     return $user;
 }
 
-function addUser($data, $DB){
+function addUser($data, $DB) {
 
 //    var_dump($data);
-    
+
     if (!$DB) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
 //    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
 //    echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
-    
+
     $sql = "insert into users(login, email)
                        VALUES ('{$data['name']}', '{$data['email']}');";
 //
@@ -52,13 +52,13 @@ function addUser($data, $DB){
     $resultQuery = $DB->query($sql);
 
     mysqli_close($DB);
-    
+
 //    var_dump($resultQuery);
-    
+
     return $resultQuery;
 }
 
-function change($fields, $table){
+function change($fields, $table) {
     $pdo = new PDO('mysql:host=localhost;dbname=new_post;charset=utf8', 'ijdb_sample', 'mypassword');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -75,10 +75,9 @@ function change($fields, $table){
 //    
 //    echo $sql;
 //    var_dump($fields);
-
     //Set the :primaryKey variable
     $fields['primaryKey'] = $fields['id'];
-    
+
     $query = $pdo->prepare($sql);
     $resultQuery = $query->execute($fields);
     return $resultQuery;
@@ -91,98 +90,12 @@ function change($fields, $table){
 //    "phone" => '+380406669922',
 //    "age" => 43
 //];
-
 //addUser($user);
 
-function getTtns($data){
-    $conn = mysqli_connect("localhost", "ijdb_sample", "mypassword", "new_post");
-    mysqli_set_charset($conn, "utf8");
-
-    if (!$conn) {
-//        echo "\nConnection failed<br>\n";
-    } else {
-// SQL-запрос
-        $id_user = $data['id'];
-        $sql1 =  "select ttn, `Status`, StatusCode, ScheduledDeliveryDate, DateTimeUpdate 
-                    from ttns 
-                   WHERE id_user = '$id_user'
-                     and DateTimeUpdate > date_sub(now(), interval 1 month)
-                     and DateTimeUpdate <= now()
-                order by DateTimeUpdate DESC";
-
-
-// Выполнить запрос (набор данных $rs содержит результат)
-        $rs = mysqli_query($conn, $sql1);
-
-        if (!($rs)) {
-            $good = "Get ttns bad";
-            $error_message = mysqli_error($conn);
-            $error_code = mysqli_errno($conn);
-            $error_sqlstate = mysqli_sqlstate($conn);
-//            echo("<BR />");
-//            echo $good;
-//            echo("<BR />");
-//            echo $error_message;
-//            echo("<BR />");
-//            echo $error_code;
-//            echo("<BR />");
-//            echo $error_sqlstate;
-//            echo("<BR />");
-        } else {
-            $bad = "Get ttn ok";
-            $error_message = mysqli_error($conn);
-            $error_code = mysqli_errno($conn);
-            $error_sqlstate = mysqli_sqlstate($conn);
-            // echo("<BR />");
-            // echo $bad;
-            // echo("<BR />");
-            // echo $error_message;
-            // echo("<BR />");
-            // echo $error_code;
-            // echo("<BR />");
-            // echo $error_sqlstate;
-            // echo("<BR />");
-
-            $mas = array();
-            $i = 0;
-
-// Цикл по recordset $rs
-// Каждый ряд становится массивом ($row) с помощью функции mysql_fetch_array
-
-            while ($row = mysqli_fetch_array($rs)) {
-
-                // Записать значение столбца id_doc, date_doc, ... (из массива $row)
-                $ttn = $row['ttn'];
-                $Status = $row['Status'];
-                $StatusCode = $row['StatusCode'];
-                $ScheduledDeliveryDate = $row['ScheduledDeliveryDate'];
-                $DateTimeUpdate = $row['DateTimeUpdate'];
-
-                $result_ok = array(
-                    'ttn' => $ttn,
-                    'Status' => $Status,
-                    'StatusCode' => $StatusCode,
-                    'ScheduledDeliveryDate' => trim($ScheduledDeliveryDate),
-                    'DateTimeUpdate' => trim($DateTimeUpdate),
-                );
-
-                $mas[$i] = $result_ok;
-                $i++;
-            }
-
-// Закрыть соединение с БД
-            mysqli_close($conn);
-
-            return $mas;
-        }
-    }
-}
-
-function saveTtn($data, $DB){
+function saveTtn($data, $DB) {
 //    var_dump($data);
 //    echo $data['ScheduledDeliveryDate'];
 //    var_dump($data);
-    
 // Соединиться с сервером БД
     mysqli_set_charset($DB, "utf8");
     if (!$DB) {
@@ -230,8 +143,8 @@ function saveTtn($data, $DB){
     }
 }
 
-function getStatus($data){
-    
+function getStatus($data) {
+
 //    $ttn = $data['ttn'];
 //    $id = $data['id'];
 //    var_dump($data);
@@ -285,7 +198,7 @@ function getStatus($data){
 //        exit();
         $date = 'data';
         $got_array = $decoded->$date;
-        
+
 //        //элементы ттн
         $ttn_obj = $got_array[0];
 //        var_dump($ttn_obj);
@@ -299,11 +212,10 @@ function getStatus($data){
         $data['ScheduledDeliveryDate'] = $ScheduledDeliveryDate;
         $data['Status'] = $Status;
         $data['StatusCode'] = $StatusCode;
-        
+
         $data['rez'] = "from new_post ok";
 //       
         return $data;
-        
     }
 
 //    return $resultQuery;

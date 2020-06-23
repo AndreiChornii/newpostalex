@@ -15,3 +15,4 @@
     <div id="right"></div>
 </div>
 <script src="documents.js"></script>
+<script src="get_documents.js"></script>

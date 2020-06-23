@@ -78,8 +78,3 @@ formManager.init = function(){
 }
 
 formManager.init();
-
-
-/*
-получаем список ттн пользователя
-*/
