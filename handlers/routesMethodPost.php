@@ -18,7 +18,7 @@ if ($method === 'POST') {
         if ($isValid) {
             $responseSuccess = [
                 'result' => true,
-                'message' => 'registration successful, go to login'
+                'message' => 'registration successful'
             ];
             
             $responseFail = [
