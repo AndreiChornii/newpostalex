@@ -5,17 +5,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$currentUser = $_SESSION['user'];
 
 if ($method === 'GET') {
     # code...
     
-    $currentUser = $_SESSION['user'];
-    
-    if(empty($_SESSION['routes'])) {
+   if(empty($_SESSION['routes'])) {
        $_SESSION['routes'] = [];
     } 
     
-    if ($route === '/get_documents') {
+    if (($route === '/get_documents') and !empty($currentUser['login'])) {
         $id_user = $_SESSION['user']['id'];
         echo json_encode(getDocuments($id_user, $DB));
         die;

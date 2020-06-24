@@ -8,7 +8,7 @@
 
 if ($method === 'POST') {
 // header('Content-type:application/json');
-    if ($route === '/registration') {
+    if (($route === '/registration') and !empty($currentUser['login'])) {
         $request = json_decode(file_get_contents('php://input'), true);
 
 //        var_dump($request);
@@ -46,31 +46,20 @@ if ($method === 'POST') {
         }
     }
     
-    if ($route === '/documents') {
+    if (($route === '/documents') and !empty($currentUser['login'])) {
         $request = json_decode(file_get_contents('php://input'), true);
 
         $isValid = validTtn($request);
         
-//        var_dump($isValid['rezult']);
         if ($isValid['rezult']) {
             
-//            var_dump($_SESSION);
-            
             $request['id_user'] = $_SESSION['user']['id'];
-//            var_dump($request);
-            
-//            $isGot = getStatus($request);
             
             saveTtn($request, $DB);
             $documents = getDocuments($request['id_user'], $DB);
             if($documents !== 'Get ttns bad'){
                 echo json_encode($documents);
             }
-            
-//            $isGot['ttns'] = getTtns($isGot);
-//            
-//            echo json_encode($isGot);
-            
         } else {
             $response = [
                 'result' => false,
@@ -81,7 +70,7 @@ if ($method === 'POST') {
         }
     }
     
-    if ($route === '/login') {
+    if (($route === '/login') and empty($currentUser['login'])) {
         
         $name = $_POST['name'];
         $email = $_POST['email'];
