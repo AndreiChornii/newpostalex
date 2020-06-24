@@ -51,19 +51,36 @@ formManager.send = function send() {
         body: JSON.stringify(data)
     }).then(function (response) {
         return response.json();
-    }).then(function (documents) {
+    }).then(function (documents_and_ttn) {
         let containerLi = document.querySelector('#right ul');
         while (containerLi.firstChild) {
             containerLi.removeChild(containerLi.firstChild);
         }
-        console.log(documents);
-        for (var prop in documents) {
+        console.log(documents_and_ttn);
+        for (var prop in documents_and_ttn.documents) {
             let li = document.createElement('li');
+            li.className = 'doc_in_list';
 //            console.log(li);
-            li.innerHTML = documents[prop].ttn;
+            li.innerHTML = documents_and_ttn.documents[prop].ttn;
 //            console.log(documents[prop]);
             containerLi.appendChild(li);
         }
+        
+        let containerLiRezult = document.querySelector('#rezult');
+        while (containerLiRezult.firstChild) {
+            containerLiRezult.removeChild(containerLiRezult.firstChild);
+        }
+        let ul = document.createElement('ul');
+        let liStatus = document.createElement('li');
+        liStatus.innerHTML = 'Статус доставки: ' + documents_and_ttn.ttn.Status;
+        ul.appendChild(liStatus);
+        let liWarehouseSender = document.createElement('li');
+        liWarehouseSender.innerHTML = '<b>Отправлено: </b>' + documents_and_ttn.ttn.WarehouseSender;
+        ul.appendChild(liWarehouseSender);
+        let liWarehouseRecipient = document.createElement('li');
+        liWarehouseRecipient.innerHTML = '<b>Получено: </b>' + documents_and_ttn.ttn.WarehouseRecipient;
+        ul.appendChild(liWarehouseRecipient);
+        containerLiRezult.appendChild(ul);
     });
 //    let Status = document.querySelector('#Status');
 //    let StatusCode = document.querySelector('#StatusCode'); 

@@ -57,8 +57,14 @@ if ($method === 'POST') {
             
             saveTtn($request, $DB);
             $documents = getDocuments($request['id_user'], $DB);
-            if($documents !== 'Get ttns bad'){
-                echo json_encode($documents);
+            $ttn = getStatus($request);
+//            var_dump($documents);
+//            var_dump($ttn);
+            if(($documents !== 'Get ttns bad') || ($ttn['rez'] !== 'from new_post bad')){
+                $documents_and_ttn = [];
+                $documents_and_ttn['documents'] = $documents;
+                $documents_and_ttn['ttn'] = $ttn;
+                echo json_encode($documents_and_ttn);
             }
         } else {
             $response = [

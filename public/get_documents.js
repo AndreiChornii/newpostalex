@@ -22,12 +22,26 @@ function get_documents() {
         let containerLi = document.querySelector('#right ul');
         for (var prop in documents) {
             let li = document.createElement('li');
+            li.className = 'doc_in_list';
 //            console.log(li);
             li.innerHTML = documents[prop].ttn;
 //            console.log(documents[prop]);
             containerLi.appendChild(li);
         }
-    });
+        var list = document.querySelectorAll(".doc_in_list");
+//        console.log(list);
+        let userttn = document.querySelector('#userttn');
+        console.log(userttn);
+        for (let i = 0; i < list.length; i++) {
+//            console.log(list[i]);
+            
+            list[i].onclick = function(){
+                console.log(this.innerText);
+                userttn.value = this.innerText;
+                console.log(userttn);
+            };
+        }
+     });
 
 }
 ;

@@ -58,40 +58,6 @@ function addUser($data, $DB) {
     return $resultQuery;
 }
 
-function change($fields, $table) {
-    $pdo = new PDO('mysql:host=localhost;dbname=new_post;charset=utf8', 'ijdb_sample', 'mypassword');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql = ' UPDATE `' . $table . '` SET ';
-
-    foreach ($fields as $key => $value) {
-        $sql .= '`' . $key . '` = :' . $key . ',';
-    }
-
-    $sql = rtrim($sql, ',');
-
-
-    $sql .= ' WHERE `id` = :primaryKey';
-//    
-//    echo $sql;
-//    var_dump($fields);
-    //Set the :primaryKey variable
-    $fields['primaryKey'] = $fields['id'];
-
-    $query = $pdo->prepare($sql);
-    $resultQuery = $query->execute($fields);
-    return $resultQuery;
-}
-
-//$user = [
-//    "username" => 'vasa-1',
-//    "email" => 'vasa_1@gmail.com',
-//    "password" => '444444444444',
-//    "phone" => '+380406669922',
-//    "age" => 43
-//];
-//addUser($user);
-
 function saveTtn($data, $DB) {
 //    var_dump($data);
 //    echo $data['ScheduledDeliveryDate'];
@@ -262,7 +228,7 @@ function getStatus($data) {
             'rez' => $rez,
             'rezult' => $rezult
         );
-        echo json_encode($to_fe);
+        return $to_fe;
     } else {
         // echo("adr: ");
         //    print_r($adr);
@@ -276,20 +242,24 @@ function getStatus($data) {
 //        //элементы ттн
         $ttn_obj = $got_array[0];
 //        var_dump($ttn_obj);
-        $Sh = 'ScheduledDeliveryDate';
-        $ScheduledDeliveryDate = $ttn_obj->$Sh;
         $sta = 'Status';
         $Status = $ttn_obj->$sta;
-        $sta_code = 'StatusCode';
-        $StatusCode = $ttn_obj->$sta_code;
+        $snd = 'WarehouseSender';
+        $WarehouseSender = $ttn_obj->$snd;
+        $rcp = 'WarehouseRecipient';
+        $WarehouseRecipient = $ttn_obj->$rcp;
+        
 //
-        $data['ScheduledDeliveryDate'] = $ScheduledDeliveryDate;
+        $data = [];
+        
         $data['Status'] = $Status;
-        $data['StatusCode'] = $StatusCode;
-
+        $data['WarehouseSender'] = $WarehouseSender;
+        $data['WarehouseRecipient'] = $WarehouseRecipient;
+    
         $data['rez'] = "from new_post ok";
 //       
         return $data;
+//        var_dump($data);
     }
 
 //    return $resultQuery;

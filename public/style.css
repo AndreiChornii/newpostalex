@@ -166,16 +166,20 @@ form.auth{
     margin-left: 10px;
 }
 
-#right ul{
-    margin-left: 20px;
+#right ul, #rezult ul{
+    margin: 0 20px;
 }
 
 h4{
     margin-left: 20px;
 }
 
-#right ul li{
+#right ul li, #rezult ul li{
     margin: 10px 0;
+}
+
+#right ul li:hover{
+    background: #0000004f;
 }
 
 @media(max-width: 500px){
