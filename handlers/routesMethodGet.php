@@ -27,17 +27,17 @@ if ($method === 'GET') {
         include '../views/registration.html.php';
     }
     
-    if ($route === '/') {
+    if (($route === '/') and empty($currentUser['login'])) {
         $error = '';
         include '../views/login.html.php';
     }
     
-    if ($route === '/documents') {
+    if (($route === '/documents') and !empty($currentUser['login'])) {
         $error = '';
         include '../views/documents.html.php';
     }
     
-    if ($route === '/logout') {
+    if (($route === '/logout') and !empty($currentUser['login'])) {
         $_SESSION['user'] = null;
         header("Location: /");
     }

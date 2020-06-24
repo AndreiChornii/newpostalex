@@ -130,14 +130,14 @@ function saveTtn($data, $DB) {
             $error_message = mysqli_error($DB);
             $error_code = mysqli_errno($DB);
             $error_sqlstate = mysqli_sqlstate($DB);
-            echo("<BR />");
-            echo $error_message;
-            echo("<BR />");
-            echo $error_code;
-            echo("<BR />");
-            echo $error_sqlstate;
-            echo("<BR />");
-            echo json_encode($result);
+//            echo("<BR />");
+//            echo $error_message;
+//            echo("<BR />");
+//            echo $error_code;
+//            echo("<BR />");
+//            echo $error_sqlstate;
+//            echo("<BR />");
+//            echo json_encode($result);
         }
 //        mysqli_close($DB);
     }
@@ -152,7 +152,7 @@ function getDocuments($id_user, $DB) {
         echo "\nConnection failed<br>\n";
     } else {
 // SQL-запрос
-        $sql1 = "select ttn 
+        $sql1 = " select ttn 
                     from documents 
                    WHERE id_user = '$id_user'
                 order by ttn";
@@ -161,19 +161,20 @@ function getDocuments($id_user, $DB) {
         $rs = mysqli_query($DB, $sql1);
 
         if (!($rs)) {
-            $good = "Get ttns bad";
+            $bad = "Get ttns bad";
             $error_message = mysqli_error($DB);
             $error_code = mysqli_errno($DB);
             $error_sqlstate = mysqli_sqlstate($DB);
-            echo("<BR />");
-            echo $good;
-            echo("<BR />");
-            echo $error_message;
-            echo("<BR />");
-            echo $error_code;
-            echo("<BR />");
-            echo $error_sqlstate;
-            echo("<BR />");
+//            echo("<BR />");
+//            echo $good;
+//            echo("<BR />");
+//            echo $error_message;
+//            echo("<BR />");
+//            echo $error_code;
+//            echo("<BR />");
+//            echo $error_sqlstate;
+//            echo("<BR />");
+            return $bad;
         } else {
             $good = "Get ttn ok";
             $error_message = mysqli_error($DB);
