@@ -12,13 +12,13 @@ var field_ttn = document.querySelector('#userttn');
 var ttnError = document.querySelector("#userttn + .auth__error");
 var button_ttn = document.querySelector('#sendbtn');
 
-var formManager = {
+var formManagerTtn = {
     ttn: field_ttn,
     ttnError: ttnError,
     sendBtn: button_ttn
 };
 
-formManager.valid = function valid() {
+formManagerTtn.valid = function valid() {
 
     var isError = false;
 
@@ -31,7 +31,7 @@ formManager.valid = function valid() {
     return !isError;
 };
 
-formManager.send = function send() {
+formManagerTtn.send = function send() {
 
     if (!this.valid()) {
         console.log('invalid ttn number');
@@ -91,7 +91,7 @@ formManager.send = function send() {
 //    data.ScheduledDeliveryDate = ScheduledDeliveryDate.innerText;
 };
 
-formManager.setClearHandler = function setClearHandler() {
+formManagerTtn.setClearHandler = function setClearHandler() {
     var elements = document.querySelectorAll('.auth__text');
 
     elements.forEach(function (element) {
@@ -102,9 +102,9 @@ formManager.setClearHandler = function setClearHandler() {
     });
 }
 
-formManager.init = function () {
+formManagerTtn.init = function () {
     this.sendBtn.onclick = this.send.bind(this);// bind чтоб в this всегда было formManager
     this.setClearHandler();
 }
 
-formManager.init();
+formManagerTtn.init();

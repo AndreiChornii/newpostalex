@@ -8,7 +8,7 @@
 
 if ($method === 'POST') {
 // header('Content-type:application/json');
-    if (($route === '/registration') and !empty($currentUser['login'])) {
+    if ($route === '/registration') {
         $request = json_decode(file_get_contents('php://input'), true);
 
 //        var_dump($request);

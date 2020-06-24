@@ -12,7 +12,7 @@
                     <i class="auth__error auth__error_hide">Not valid email (example@gmail.com)</i>
                 </div>
                 <div class="auth__row">
-                    <button type="button" id="sendbtn" class="auth__btn">Registration</button>
+                    <button type="button" id="regbtn" class="auth__btn">Registration</button>
                 </div>
             </fieldset>
         </form>

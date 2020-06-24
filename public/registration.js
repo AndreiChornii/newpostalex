@@ -7,7 +7,7 @@ var formManager = {
     nameError: document.querySelector("#username + .auth__error"),
     email: document.querySelector("#useremail"),
     emailError: document.querySelector("#useremail + .auth__error"),
-    sendBtn: document.querySelector("#sendbtn")
+    regbtn: document.querySelector("#regbtn")
 };
 
 formManager.valid = function valid(){
@@ -64,7 +64,7 @@ formManager.setClearHandler = function setClearHandler(){
 }
 
 formManager.init = function(){
-    this.sendBtn.onclick = this.send.bind(this);// bind чтоб в this всегда было formManager
+    this.regbtn.onclick = this.send.bind(this);// bind чтоб в this всегда было formManager
     this.setClearHandler();
 }
 
