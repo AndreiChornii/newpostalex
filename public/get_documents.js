@@ -3,7 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function eventOnClickAtList() {
+    var list = document.querySelectorAll(".doc_in_list");
+//        console.log(list);
+    let userttn = document.querySelector('#userttn');
+    console.log(userttn);
+    for (let i = 0; i < list.length; i++) {
+//            console.log(list[i]);
 
+        list[i].onclick = function () {
+            console.log(this.innerText);
+            userttn.value = this.innerText;
+            console.log(userttn);
+            
+            let sendbtn = document.querySelector('#sendbtn');
+            let event = new Event('click');
+            sendbtn.dispatchEvent(event);
+//            sendbtn.click();
+        };
+    }
+}
 /*
  получаем список ттн пользователя
  */
@@ -28,19 +47,7 @@ function get_documents() {
 //            console.log(documents[prop]);
             containerLi.appendChild(li);
         }
-        var list = document.querySelectorAll(".doc_in_list");
-//        console.log(list);
-        let userttn = document.querySelector('#userttn');
-        console.log(userttn);
-        for (let i = 0; i < list.length; i++) {
-//            console.log(list[i]);
-            
-            list[i].onclick = function(){
-                console.log(this.innerText);
-                userttn.value = this.innerText;
-                console.log(userttn);
-            };
-        }
+        eventOnClickAtList();
      });
 
 }

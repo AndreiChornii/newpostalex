@@ -65,6 +65,7 @@ formManager.send = function send() {
 //            console.log(documents[prop]);
             containerLi.appendChild(li);
         }
+        eventOnClickAtList();
         
         let containerLiRezult = document.querySelector('#rezult');
         while (containerLiRezult.firstChild) {
