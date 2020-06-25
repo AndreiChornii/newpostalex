@@ -42,8 +42,6 @@ if ($method === 'GET') {
     }
     
     else{
-        var_dump($route);
-        var_dump($currentUser);
         include '../views/404.html.php';
     }
 
