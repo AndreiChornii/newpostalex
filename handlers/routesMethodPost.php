@@ -46,7 +46,7 @@ if ($method === 'POST') {
         }
     }
     
-    if (($route === '/documents') and !empty($currentUser['login'])) {
+    elseif (($route === '/documents') and !empty($currentUser['login'])) {
         $request = json_decode(file_get_contents('php://input'), true);
 
         $isValid = validTtn($request);
@@ -76,7 +76,7 @@ if ($method === 'POST') {
         }
     }
     
-    if (($route === '/login') and empty($currentUser['login'])) {
+    elseif (($route === '/login') and empty($currentUser['login'])) {
         
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -99,5 +99,11 @@ if ($method === 'POST') {
 
         header("Location: /documents");
         
+    }
+    
+    else{
+        include '../views/header.html.php';
+        include '../views/404.html.php';
+        include '../views/footer.html.php';
     }
 }

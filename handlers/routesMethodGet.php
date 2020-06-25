@@ -26,19 +26,23 @@ if ($method === 'GET') {
         include '../views/registration.html.php';
     }
     
-    if (($route === '/') and empty($currentUser['login'])) {
+    elseif (($route === '/') and empty($currentUser['login'])) {
         $error = '';
         include '../views/login.html.php';
     }
     
-    if (($route === '/documents') and !empty($currentUser['login'])) {
+    elseif (($route === '/documents') and !empty($currentUser['login'])) {
         $error = '';
         include '../views/documents.html.php';
     }
     
-    if (($route === '/logout') and !empty($currentUser['login'])) {
+    elseif (($route === '/logout') and !empty($currentUser['login'])) {
         $_SESSION['user'] = null;
         header("Location: /");
+    }
+    
+    else{
+        include '../views/404.html.php';
     }
 
     include '../views/footer.html.php';
