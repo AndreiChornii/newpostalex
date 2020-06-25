@@ -27,7 +27,7 @@ formManagerTtn.valid = function valid() {
         this.ttnError.classList.add('auth__error_show');
         isError = true;
     }
-
+//    return true;
     return !isError;
 };
 
@@ -35,6 +35,7 @@ formManagerTtn.send = function send() {
 
     if (!this.valid()) {
         console.log('invalid ttn number');
+        
         return null;
     }
     ;
@@ -83,12 +84,6 @@ formManagerTtn.send = function send() {
         ul.appendChild(liWarehouseRecipient);
         containerLiRezult.appendChild(ul);
     });
-//    let Status = document.querySelector('#Status');
-//    let StatusCode = document.querySelector('#StatusCode'); 
-//    let ScheduledDeliveryDate = document.querySelector('#ScheduledDeliveryDate');
-//    data.Status = Status.innerText;
-//    data.StatusCode = StatusCode.innerText;
-//    data.ScheduledDeliveryDate = ScheduledDeliveryDate.innerText;
 };
 
 formManagerTtn.setClearHandler = function setClearHandler() {
