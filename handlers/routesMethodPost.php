@@ -81,7 +81,7 @@ if ($method === 'POST') {
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-        $User = getUser($email);
+        $User = getUser($email, $DB);
         
         /* if name or email is not correct
            send page login with error

@@ -6,9 +6,7 @@
  * and open the template in the editor.
  */
 
-function getUser($email) {
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "newpostalex");
+function getUser($email, $DB) {
 
     if (!$DB) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
