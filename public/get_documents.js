@@ -17,7 +17,7 @@ function eventOnClickAtList() {
             userttn.value = this.innerText;
 //            console.log(userttn);
             
-            let sendbtn = document.querySelector('#sendbtn');
+            let sendbtn = document.querySelector('#ttnbtn');
             let event = new Event('click');
             sendbtn.dispatchEvent(event);
 //            sendbtn.click();

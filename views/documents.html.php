@@ -6,7 +6,7 @@
                 <i class="auth__error auth__error_hide">Not valid ttn (14 digits)</i>
             </div>
             <div class="auth__row">
-                <button type="button" id="sendbtn" class="auth__btn">Get status TTN</button>
+                <button type="button" id="ttnbtn" class="auth__btn">Get status TTN</button>
             </div>
         </div>
         <div id="rezult"></div>

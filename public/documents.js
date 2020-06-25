@@ -10,7 +10,7 @@
 
 var field_ttn = document.querySelector('#userttn');
 var ttnError = document.querySelector("#userttn + .auth__error");
-var button_ttn = document.querySelector('#sendbtn');
+var button_ttn = document.querySelector('#ttnbtn');
 
 var formManagerTtn = {
     ttn: field_ttn,
